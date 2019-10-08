@@ -1,0 +1,1 @@
+render partial: "friend.json.jb", locals: { friend: @friend }

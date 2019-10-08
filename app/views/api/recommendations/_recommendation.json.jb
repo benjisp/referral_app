@@ -1,0 +1,5 @@
+{
+  feature_id: recommendation.feature_id,
+  sender_id: recommendation.sender_id,
+  recipient_id: recommendation.recipient_id,
+}

@@ -1,0 +1,7 @@
+{
+  feature_id: feature.id,
+  title: feature.title,
+  year: feature.year,
+  genre: feature.genre,
+  poster: feature.poster
+}

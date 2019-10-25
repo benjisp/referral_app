@@ -1,5 +1,5 @@
 {
-  user1_id: friend.user1_id,
-  user2_id: friend.user2_id,
-  pending: friend.pending
+  id: friend.id,
+  user1: friend.user1_id,
+  user2: friend.user2_id
 }

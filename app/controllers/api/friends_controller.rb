@@ -1,25 +1,26 @@
 class Api::FriendsController < ApplicationController
 
+  before_action :authenticate_user
 
   def index
-    @friends = Friend.all
+    @friends = current_user.friends
     render 'index.json.jb'
   end
 
   def create
-    @recommendation = Recommendation.new(
-      user1_id: params[:user1_id],
+    @friend = Friend.new(
+      user1_id: current_user.id,
       user2_id: params[:user2_id],
-      pending: false
+      pending: true
     )
-    if @recommendation.save
+    if @friend.save
       render 'show.json.jb'
     else
-      render json: {errors: @recommendation.errors.full_messages}, status: :unprocessable_entity
+      render json: {errors: @friend.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
-  def show
+  def update
     @friend = Friend.find(params[:id])
     render 'show.json.jb'
   end

@@ -1,11 +1,9 @@
-# benji = User.create({ username: 'benji', email: 'benji@gmail.com', password_digest: 'hello'})
-
-# enji = User.create({ username: 'enji', email: 'enji@gmail.com', password_digest: 'hello'})
-
-# feature1 = Feature.create({ title: 'Her', year: '2013', genre: 'drama', imdb_id: 'tt1798709', poster: 'https://img.omdbapi.com/?apikey=959b296c&i=tt1798709'})
-
-# feature2 = Feature.create({ title: 'Frozen', year: '2013', genre: 'fantasy', imdb_id: 'tt2294629', poster: 'https://img.omdbapi.com/?apikey=959b296c&i=tt2294629'})
-
-# Recommendation.create([{ feature_id: feature1.id, sender_id: benji.id, recipient_id: enji.id }])
-
-# Friend.create([{ user1_id: benji.id, user2_id: enji.id, pending: false }])
+# Feature.create( 
+#   imdb_id: "tt0910970",
+#   title: "WALL·E",
+#   year: "2008", 
+#   genre: "Animation, Adventure, Family, Sci-Fi",
+#   plot: "In the distant future, a small waste-collecting robot inadvertently embarks on a space journey that will ultimately decide the fate of mankind.",
+#   director: "Andrew Stanton",
+#   poster: "https://m.media-amazon.com/images/M/MV5BMjExMTg5OTU0NF5BMl5BanBnXkFtZTcwMjMxMzMzMw@@._V1_SX300.jpg"
+# )

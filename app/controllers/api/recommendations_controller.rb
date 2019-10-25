@@ -1,15 +1,29 @@
 class Api::RecommendationsController < ApplicationController
 
+  before_action :authenticate_user
 
   def index
     @recommendations = Recommendation.all
     render 'index.json.jb'
-    
   end
-  def create
+
+  def create #check if feature is in database
+    @feature = Feature.find_by(imdb_id: params[:imdbID])
+    if !@feature 
+      response = HTTP.get("http://www.omdbapi.com/?apikey=#{ENV['api_key']}&i=#{params[:imdbID]}").parse
+      @feature = Feature.create(
+        imdb_id: response["imdbID"],
+        title: response["Title"],
+        year: response["Year"],
+        genre: response["Genre"],
+        director: response["Director"],
+        plot: response["Plot"],
+        poster: response["Poster"]
+        )
+    end
     @recommendation = Recommendation.new(
-      feature_id: params[:feature_id],
-      sender_id: params[:sender_id],
+      feature_id: @feature.id,
+      sender_id: current_user.id,
       recipient_id: params[:recipient_id]
     )
     if @recommendation.save

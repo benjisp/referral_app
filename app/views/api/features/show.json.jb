@@ -1,9 +1,1 @@
-{
-  imdbID: @feature.imdb_id,
-  title: @feature.title,
-  year: @feature.year,
-  genre: @feature.genre,
-  plot: @feature.plot,
-  director: @feature.director,
-  poster: @feature.poster
-}
+render partial: "feature.json.jb", locals: { feature: @feature }

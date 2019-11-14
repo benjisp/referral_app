@@ -2,15 +2,20 @@ class Api::UsersController < ApplicationController
 
   before_action :authenticate_user, only: [:show]
 
+  def index
+    @users = User.all
+    render 'index.json.jb'
+  end
+
   def create
     @user = User.new(
       username: params[:username],
       email: params[:email],
       password: params[:password],
-      password_digest: params[:password_digest]
+      password_confirmation: params[:password_confirmation]
     )
     if @user.save
-      render json: {message: 'User created successfully'}, status: :created
+      render 'show.json.jb'
     else
       render json: {errors: @user.errors.full_messages}, status: :unprocessable_entity
     end

@@ -3,7 +3,7 @@ class Api::RecommendationsController < ApplicationController
   before_action :authenticate_user
 
   def index
-    @recommendations = Recommendation.all
+    @recommendations = current_user.recommendations
     render 'index.json.jb'
   end
 
@@ -31,11 +31,6 @@ class Api::RecommendationsController < ApplicationController
     else
       render json: {errors: @recommendation.errors.full_messages}, status: :unprocessable_entity
     end
-  end
-
-  def show
-    @recommendation = Recommendation.find(params[:id])
-    render 'show.json.jb'
   end
 
   def destroy

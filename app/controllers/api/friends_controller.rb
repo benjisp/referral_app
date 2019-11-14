@@ -4,6 +4,7 @@ class Api::FriendsController < ApplicationController
 
   def index
     @friends = current_user.friends
+    @pending_friends = current_user.pending_friends
     render 'index.json.jb'
   end
 
@@ -22,12 +23,21 @@ class Api::FriendsController < ApplicationController
 
   def update
     @friend = Friend.find(params[:id])
-    render 'show.json.jb'
+    if current_user.id == @friend.user2_id
+      @friend.update(pending: false)
+      render 'show.json.jb'
+    else
+      render json: {errors: @friend.errors.full_messages}, status: :unprocessable_entity
+    end
   end
 
   def destroy
     @friend = Friend.find(params[:id])
-    @friend.destroy
-    render json: { message: "Removed friend." }
+    if current_user.id == @friend.user1_id || current_user.id == @friend.user2_id
+      @friend.destroy
+      render json: { message: "Removed friend." }
+    else
+      render json: {errors: @friend.errors.full_messages}, status: :unprocessable_entity
+    end
   end
 end

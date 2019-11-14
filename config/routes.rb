@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
     post "/sessions" => "sessions#create"
 
+    get "users" => "users#index"
     post "users" => "users#create"
     get "users/:id" => "users#show"
     patch "users/:id" => "users#update"
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
     delete "recommendations/:id" => "recommendations#destroy"
 
     get "features" => "features#index"
-    get "features/show" => "features#show"
+    get "features/:id" => "features#show"
 
     post "friends" => "friends#create"
     get "friends" => "friends#index"

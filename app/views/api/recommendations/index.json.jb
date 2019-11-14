@@ -1,3 +1,10 @@
 @recommendations.map do |recommendation|
-  render partial: "recommendation.json.jb", locals: { recommendation: recommendation }
+  r = {
+    id: recommendation.id,
+    created_at: recommendation.created_at
+  }
+  r[:feature] = render partial: "api/features/feature", locals: {feature: recommendation.feature}
+  r[:sender] = render partial: "api/users/user", locals: {user: recommendation.sender}
+
+  r
 end

@@ -1,7 +1,9 @@
-friend = render partial: "friend.json.jb", locals: {friend: @friend}
+friend = render partial: "friend.json.jb", locals: { friend: @friend }
 
-friend[:users] = @friend.users.map do |user| 
-  render partial: "api/users/user", locals: { user: user }
+if current_user.id == @friend.user1_id
+  friend[:user] = render partial: 'api/users/user', locals: { user: @friend.user2}
+else
+  friend[:user] = render partial: 'api/users/user', locals: { user: @friend.user1}
 end
 
-friend 
+friend
